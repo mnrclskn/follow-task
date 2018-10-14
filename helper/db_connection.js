@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 module.exports = () => {
-    mongoose.connect('mongodb://localhost/followTask');
+    mongoose.connect('mongodb://localhost/followTask',  { useNewUrlParser: true });
     mongoose.connection.on('open', () => {
         console.log('Connected');
     });

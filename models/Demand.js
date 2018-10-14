@@ -15,4 +15,4 @@ const DemandSchema = new Schema({
     completed_date: Date
 });
 
-module.exports('demand', DemandSchema);
+module.exports = mongoose.model('demand', DemandSchema);

@@ -1,0 +1,27 @@
+extends ./layout.pug
+
+block content
+    .container
+        .row
+            .col-6
+                form(method='POST', action='/users/add/')
+                    #form-group
+                        label Full Name:
+                        input.form-control(name='name', type='text')
+                    #form-group
+                        label Username:
+                        input.form-control(name='username', type='text')
+                    #form-group
+                        label Mail:
+                        input.form-control(name='email', type='text')
+                    #form-group
+                        label Phone:
+                        input.form-control(name='phone', type='text')
+                    #form-group
+                        label Password:
+                        input.form-control(name='password',type='password')
+                    #form-group
+                        label Address:
+                        textarea.form-control(name='address')
+                    br
+                    input.btn.btn-primary(type='submit',value='Submit')

@@ -1,2 +1,21 @@
 extends ./layout.pug
 
+block content
+    .container
+        .row
+            .col-6
+                form(method='POST', action='/customers/add/')
+                    #form-group
+                        label Full Name:
+                        input.form-control(name='name', type='text')
+                    #form-group
+                        label Mail:
+                        input.form-control(name='mail', type='text')
+                    #form-group
+                        label Phone:
+                        input.form-control(name='phone', type='text')
+                    #form-group
+                        label Address:
+                        textarea.form-control(name='address')
+                    br
+                    input.btn.btn-primary(type='submit',value='Submit')

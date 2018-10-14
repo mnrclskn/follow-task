@@ -1,0 +1,30 @@
+extends ./layout.pug
+
+block content
+    br
+    br
+    .container
+        .row
+            .col-12
+                table.table
+                    thead
+                        tr
+                            th Name
+                            th Mail
+                            th Address
+                            th Phone
+                            th Operations
+                    tbody
+                    each customer, i in customers
+                        tr
+                            td= customer.name
+                            td= customer.mail
+                            td= customer.address
+                            td= customer.phone
+                            td
+                                a.btn.btn-outline-secondary(href="/customers/edit/" + customer._id) Edit
+                                | &nbsp;&nbsp;&nbsp;&nbsp;
+                                a.btn.btn-outline-secondary.delete-customer(href='/', data-id=customer._id) Delete
+                    tfoot
+
+

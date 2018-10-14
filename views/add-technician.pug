@@ -1,0 +1,21 @@
+extends ./layout.pug
+
+block content
+    .container
+        .row
+            .col-6
+                form(method='POST', action='/technician/add/')
+                    #form-group
+                        label Full Name:
+                        input.form-control(name='name', type='text')
+                    #form-group
+                        label Mail:
+                        input.form-control(name='email', type='mail')
+                    #form-group
+                        label Phone:
+                        input.form-control(name='phone', type='text')
+                    #form-group
+                        label Password:
+                        input.form-control(name='password', type='password')
+                    br
+                    input.btn.btn-primary(type='submit',value='Submit')

@@ -1,0 +1,30 @@
+extends ./layout.pug
+
+block content
+    .container
+        .row
+            .col-11
+            .col-1
+                a.btn.btn-outline-secondary(href='/technician/add', role='button', aria-pressed='true') Add Technician
+        .row
+            .col-12
+                table.table
+                    thead
+                        tr
+                            th Full Name
+                            th Mail
+                            th Phone
+                            th Password
+                            th Operations
+                    tbody
+                    each technician, i in technicians
+                        tr
+                            td= technician.name
+                            td= technician.email
+                            td= technician.phone
+                            td= technician.password
+                            td
+                                a.btn.btn-outline-secondary(href="/technician/edit/" + technician._id) Edit
+                                | &nbsp;&nbsp;&nbsp;&nbsp;
+                                a.btn.btn-outline-secondary(href="/technician/delete/"+ technician._id) Delete
+                    tfoot

@@ -1,11 +1,11 @@
-const mongoose = required('mongoose');
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const TechnicianSchema = new Schema({
     name: String,
-    mail: String,
-    tel: String,
+    email: String,
+    phone: String,
     password: String
 });
 
-module.exports('technician', TechnicianSchema);
+module.exports= mongoose.model('technician', TechnicianSchema);

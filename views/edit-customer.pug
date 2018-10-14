@@ -1,0 +1,18 @@
+extends ./layout.pug
+
+block content
+    form(method='POST', action='/customers/edit/' + customer._id)
+        #form-group
+            label Full Name:
+            input.form-control(name='name', type='text', value=customer.name)
+        #form-group
+            label Mail:
+            input.form-control(name='mail', type='text', value=customer.mail)
+        #form-group
+            label Phone:
+            input.form-control(name='phone', type='text', value=customer.phone)
+        #form-group
+            label Address:
+            textarea.form-control(name='address')= customer.address
+        br
+        input.btn.btn-primary(type='submit',value='Submit')
