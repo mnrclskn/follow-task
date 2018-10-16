@@ -1,0 +1,15 @@
+extends ./layout.pug
+
+block content
+    .container
+        .row
+            .col-6
+                form(method='POST', action='/task/add/')
+                    #form-group
+                        label Full Name:
+                        input.form-control(name='name', type='text', value=users.name, readonly=true)
+                    #form-group
+                        label Task Description:
+                        textarea.form-control(name='description')
+                    br
+                    input.btn.btn-primary(type='submit',value='Submit')

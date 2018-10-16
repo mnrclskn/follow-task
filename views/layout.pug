@@ -20,9 +20,8 @@ html
                             a(href='/customers') Customers
                         li
                             a(href='/technician') Technician
-                        if user
-                            li
-                                a(href='/') Add Article
+                        li
+                            a(href='/task') Tasks
                     ul.nav.navbar-nav.navbar-right
                         if user
                             li
@@ -32,7 +31,6 @@ html
                                 a(href='/users') Register
                             li
                                 a(href='/users/login') Login
-
         block content
         br
         hr

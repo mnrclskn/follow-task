@@ -6,7 +6,7 @@ const Technician = require('../models/Technician');
 const User = require('../models/User');
 
 // ---- GET All Technician ---------
-router.get('/', (req, res) => {
+router.get('/',ensureAuthenticated, (req, res) => {
     const promise = Technician.find({});
 
     promise.then((data) => {
@@ -78,6 +78,14 @@ router.post('/edit/:id', (req,res) =>{
         console.log(err);
     });
 });
-//--------------------------------------
+
+// Access Control
+function ensureAuthenticated(req, res, next){
+    if(req.isAuthenticated()){
+        return next();
+    } else {
+        res.redirect('/users/login');
+    }
+}
 
 module.exports = router;

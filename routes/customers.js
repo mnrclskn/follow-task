@@ -5,7 +5,7 @@ const router = express.Router();
 const Customer = require('../models/Customer');
 
 // ------ Add Customer   --------
-router.get('/add', (req,res) =>{
+router.get('/add',ensureAuthenticated, (req,res) =>{
     res.render('add_customer');
 });
 
@@ -24,7 +24,7 @@ router.post('/add', (req, res) =>{
 // ------------------------------
 
 // ----- GET All Customers  ---------
-router.get('/', (req, res, next) =>{
+router.get('/',ensureAuthenticated, (req, res, next) =>{
     Customer.find({}, (err, customers) =>{
         if(err){
             console.log(err);
@@ -80,6 +80,14 @@ router.post('/edit/:id', (req,res) =>{
         console.log(err);
     });
 });
-//--------------------------------------
+
+// Access Control
+function ensureAuthenticated(req, res, next){
+    if(req.isAuthenticated()){
+        return next();
+    } else {
+        res.redirect('/users/login');
+    }
+}
 
 module.exports = router;

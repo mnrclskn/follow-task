@@ -1,0 +1,41 @@
+extends ./layout.pug
+
+block content
+    .container
+        .row
+            .col-11
+            .col-1
+                a.btn.navbar-right(href='/task/add', role='button', aria-pressed='true') Add Task
+        .row
+            .col-12
+                table.table
+                    thead
+                        tr
+                            th Customer Name
+                            th Mail
+                            th Phone
+                            th Technician Name
+                            th Description
+                            th State
+                            th Operations
+                    tbody
+                      each task, i in tasks
+                        tr
+                            td= task.user.name
+                            td= task.user.email
+                            td= task.user.phone
+                            td Technician Name
+                            td= task.description
+                            td
+                              if(task.status === "0")
+                                |Open
+                              else if(task.state === '1')
+                                |Completed
+                              else if(task.state === '2')
+                                |Canceled
+                              else if(task.state === '3')
+                                | Wait
+
+                            td Operations
+
+                    tfoot
