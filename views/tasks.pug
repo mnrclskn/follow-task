@@ -14,28 +14,48 @@ block content
                             th Customer Name
                             th Mail
                             th Phone
-                            th Technician Name
                             th Description
                             th State
-                            th Operations
+                            th Technician
+                            if(user.status === "1")
+                                th State Operation
                     tbody
                       each task, i in tasks
                         tr
                             td= task.user.name
                             td= task.user.email
                             td= task.user.phone
-                            td Technician Name
                             td= task.description
-                            td
-                              if(task.status === "0")
-                                |Open
-                              else if(task.state === '1')
-                                |Completed
-                              else if(task.state === '2')
-                                |Canceled
-                              else if(task.state === '3')
-                                | Wait
+                            td= task.status
+                            if(task.technician_id === null)
+                                td Atama Yok
+                            else
+                                td= task.technician.name
 
-                            td Operations
+                            if(user.status === "1")
+                                td
+                                    .dropdown
+                                        button#dropdownMenu1.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
+                                            | Choose Tech
+                                            span.caret
+                                        ul.dropdown-menu(aria-labelledby='dropdownMenu1')
+                                            each technician, i in technicians
+
+                                                li
+                                                    a(href='/task/edit/' + technician._id + '/' + task._id )= technician.name
+                                    .dropdown
+                                        button#dropdownMenu1.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
+                                            | Change State
+                                            span.caret
+                                        ul.dropdown-menu(aria-labelledby='dropdownMenu1')
+                                                li
+                                                    a(href='/task/state/' + 'Open/' + task._id) Open
+                                                li
+                                                    a(href='/task/state/' + 'Completed/' + task._id) Completed
+                                                li
+                                                    a(href='/task/state/' + 'Canceled/' + task._id) Canceled
+                                                li
+                                                    a(href='/task/state/' + 'Wait/' + task._id) Wait
+
 
                     tfoot

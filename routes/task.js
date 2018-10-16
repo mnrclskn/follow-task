@@ -4,9 +4,10 @@ const router = express.Router();
 //Model
 const Task = require('../models/Task');
 const User = require('../models/User');
+const Technician = require('../models/Technician');
 
 // GET All Tasks
-router.get('/', (req, res) => {
+router.get('/',ensureAuthenticated, (req, res) => {
     const promise = Task.aggregate([
         {
             $lookup: {
@@ -18,16 +19,34 @@ router.get('/', (req, res) => {
         },
         {
             $unwind: '$user'
+        },
+        {
+            $lookup: {
+                from: 'technicians',
+                localField: 'technician_id',
+                foreignField: '_id',
+                as: 'technician'
+            }
+        },
+        {
+            $unwind: '$technician'
         }
     ]);
 
     promise.then((data) => {
-        res.render('tasks', {
-            tasks: data
+        Technician.find({}, (err, technicians) =>{
+            if(err){
+                console.log(err);
+            } else {
+                res.render('tasks', {
+                    tasks: data,
+                    technicians
+                });
+            }
         });
     }).catch((err) => {
         res.json(err);
-    })
+    });
 });
 
 // GET Add Task Form
@@ -44,7 +63,7 @@ router.get('/add',ensureAuthenticated, (req,res) =>{
 });
 
 //POST Add Task
-router.post('/add', (req,res) =>{
+router.post('/add',ensureAuthenticated, (req,res) =>{
   const description = req.body.description;
 
   const task = new Task({
@@ -61,6 +80,40 @@ router.post('/add', (req,res) =>{
           res.redirect('/task');
       }
   });
+});
+
+// UPDATE -  Choose Technician
+router.get('/edit/:technician_id/:task_id', (req,res) =>{
+    let query = {_id:req.params.task_id}
+
+    let task = {};
+    task.technician_id = req.params.technician_id;
+
+    Task.update(query, task, (err) =>{
+        if(err){
+            console.log(err);
+            return;
+        } else {
+            res.redirect('/task');
+        }
+    });
+});
+
+// UPDATE -  Change State
+router.get('/state/:state/:task_id', (req,res) =>{
+    let query = {_id:req.params.task_id}
+
+    let task = {};
+    task.status = req.params.state;
+
+    Task.update(query, task, (err) =>{
+        if(err){
+            console.log(err);
+            return;
+        } else {
+            res.redirect('/task');
+        }
+    });
 });
 
 // Access Control

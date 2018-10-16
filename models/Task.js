@@ -9,7 +9,10 @@ const Schema = mongoose.Schema;
 
 const TaskSchema = new Schema({
     user_id: Schema.Types.ObjectId,
-    technician_id: Schema.Types.ObjectId,
+    technician_id:{
+        type: Schema.Types.ObjectId,
+        default: '5bc66b0a48fe552be46cc9a2'
+    } ,
     description: String,
     status: String,
     create_date: {
