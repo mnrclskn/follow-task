@@ -69,7 +69,7 @@ router.post('/add',ensureAuthenticated, (req,res) =>{
   const task = new Task({
       user_id: req.user._id,
       description,
-      status: '0'
+      status: 'Open'
   });
 
   task.save((err) => {

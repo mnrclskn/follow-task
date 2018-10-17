@@ -1,0 +1,8 @@
+
+body {
+    --light-main-color: #b0d2e5; /*rgba(204,238,255, 0.8);*/
+    --dark-main-color: rgba(102, 153, 204, 0.4);
+    --darker-main-color: rgba(51, 102, 153, 0.9);
+
+    background: var(--light-main-color);
+}

@@ -18,7 +18,8 @@ block content
                             th State
                             th Technician
                             if(user.status === "1")
-                                th State Operation
+                                th Choose Technician
+                                th Change State
                     tbody
                       each task, i in tasks
                         tr
@@ -36,16 +37,17 @@ block content
                                 td
                                     .dropdown
                                         button#dropdownMenu1.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
-                                            | Choose Tech
+                                            | Technician
                                             span.caret
                                         ul.dropdown-menu(aria-labelledby='dropdownMenu1')
                                             each technician, i in technicians
 
                                                 li
                                                     a(href='/task/edit/' + technician._id + '/' + task._id )= technician.name
+                                td
                                     .dropdown
                                         button#dropdownMenu1.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
-                                            | Change State
+                                            | State
                                             span.caret
                                         ul.dropdown-menu(aria-labelledby='dropdownMenu1')
                                                 li
