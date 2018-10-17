@@ -2,8 +2,9 @@ doctype html
 html
     head
         title Follow Task
-        link(rel='stylesheet', href='/bower_components/bootstrap/dist/css/bootstrap.css')
-        link(rel='stylesheet', href='/css/style.css')
+        block stylesheets
+            link(rel='stylesheet', href='/bower_components/bootstrap/dist/css/bootstrap.css')
+            link(rel='stylesheet', href='/css/style.css')
     body
         nav.navbar.navbar-inverse
             .container
@@ -35,7 +36,8 @@ html
         block content
         br
         hr
-    script(src='/bower_components/jquery/dist/jquery.js')
-    script(src='/bower_components/bootstrap/dist/js/bootstrap.js')
-    script(src='/js/main.js')
+    block script
+        script(src='/bower_components/jquery/dist/jquery.js')
+        script(src='/bower_components/bootstrap/dist/js/bootstrap.js')
+        script(src='/js/main.js')
 
